@@ -19,6 +19,7 @@ export class UserService {
     }
 
     async createNewUser(newUser: UserEntity): Promise<UserEntity> {
+        // not duplicate username
         return await this.userRepository.save(newUser);
     }  
 
