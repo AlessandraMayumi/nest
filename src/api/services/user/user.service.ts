@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from 'src/api/3-domain/User/user.entity';
+import { UserEntity } from 'src/api/domain/User/user.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -15,7 +15,11 @@ export class UserService {
     }
 
     async getUserById(id: number): Promise<UserEntity> {
-        return await this.userRepository.findOne({ where: { id: id }})
+        return await this.userRepository.findOne({ where: { id: id } })
+    }
+
+    async getUserByUsername(username: string): Promise<UserEntity> {
+        return await this.userRepository.findOne({ where: { username: username } })
     }
 
     async createNewUser(newUser: UserEntity): Promise<UserEntity> {
